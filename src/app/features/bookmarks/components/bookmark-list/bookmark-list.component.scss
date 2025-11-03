@@ -1,0 +1,47 @@
+.list-wrapper {
+  .list-container {
+    h3 {
+      margin: 16px 0 8px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--app-accent);
+    }
+  }
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+
+    .list-icon {
+      margin-right: 16px;
+      color: var(--mat-grey-600);
+    }
+
+    .list-content {
+      flex: 1;
+
+      .bookmark-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .bookmark-url {
+        font-size: 14px;
+        color: var(--mat-grey-500);
+      }
+    }
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--app-accent);
+    margin-top: 40px;
+  }
+}
+
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

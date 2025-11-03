@@ -1,0 +1,7 @@
+<div class="edit-wrapper">
+  <mat-card class="edit-card">
+    <mat-card-content>
+      <app-bookmark-form [bookmark]="selectedBookmark" mode="edit" headerTitle="Edit Existing Bookmark" headerSubtitle="Type bookmark name and url" (save)="onSave($event)" (cancel)="onCancel()"></app-bookmark-form>
+    </mat-card-content>
+  </mat-card>
+</div>

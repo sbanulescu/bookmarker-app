@@ -1,0 +1,63 @@
+
+
+<div class="list-wrapper" *ngIf="isSearching$ | async">
+  <div class="list-container" *ngIf="searchResults$ | async as results">
+    <h3 *ngIf="results.length">Results for "{{ searchQuery$ | async }}"</h3>
+    <div *ngIf="!results.length" class="empty-state">
+      <p>No bookmarks found matching your search.</p>
+    </div>
+    <ng-container *ngIf="results.length">
+      <div class="list-item" *ngFor="let bookmark of results">
+        <div class="list-icon">
+          <mat-icon>bookmark</mat-icon>
+        </div>
+        <div class="list-content">
+          <strong>{{ bookmark.title }}</strong> -
+          <a [href]="bookmark.url" target="_blank">{{ bookmark.url }}</a>
+        </div>
+        <div class="list-actions">
+          <button mat-icon-button color="primary" [routerLink]="['/edit', bookmark.id]" aria-label="Edit bookmark"
+            matTooltip="Edit" matTooltipPosition="above">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteBookmark(bookmark.id)" aria-label="Delete bookmark"
+            matTooltip="Delete" matTooltipPosition="above">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+<ng-container *ngIf="!(isSearching$ | async)">
+  <div class="list-wrapper" *ngIf="bookmarkSections$ | async as sections">
+    <div class="list-container" *ngFor="let section of sections">
+      <h3>{{ section.title }}</h3>
+      <div class="list-item" *ngFor="let bookmark of section.bookmarks">
+        <div class="list-icon">
+          <mat-icon>bookmark</mat-icon>
+        </div>
+        <div class="list-content">
+          <strong>{{ bookmark.title }}</strong> -
+          <a [href]="bookmark.url" target="_blank">{{ bookmark.url }}</a>
+        </div>
+        <div class="list-actions">
+          <button mat-icon-button color="primary" [routerLink]="['/edit', bookmark.id]" aria-label="Edit bookmark"
+            matTooltip="Edit" matTooltipPosition="above">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteBookmark(bookmark.id)" aria-label="Delete bookmark"
+            matTooltip="Delete" matTooltipPosition="above">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="loading-container" *ngIf="loading$ | async">
+  <mat-progress-spinner mode="indeterminate" diameter="48" strokeWidth="4" color="accent"></mat-progress-spinner>
+</div>

@@ -1,0 +1,6 @@
+.vscode/
+.idea/
+.angular/
+.angular/cache/
+node_modules/
+dist/
